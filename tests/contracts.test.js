@@ -201,8 +201,8 @@ test('replay window can be bounded without creating unbounded in-memory storage'
   });
   const call = (messageId) => gateway.dispatchEnvelope(valid({ messageId }));
   call('one'); call('two'); call('three');
-  assert.equal(call('one').ok, true); // Evicted. Not durable anti-replay protection.
   assert.equal(call('three').receipt.reason, 'REPLAY_DETECTED');
+  assert.equal(call('one').ok, true); // Evicted. Not durable anti-replay protection.
 });
 
 test('createEnvelope generates the documented schema without inferred privilege', () => {
