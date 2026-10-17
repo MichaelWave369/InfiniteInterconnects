@@ -47,9 +47,9 @@ export function makeDemoContractGateway(clock = () => new Date().toISOString()) 
 }
 
 export function demoEnvelope({ messageId, traceId = messageId, from, to,
-  capability, payload = {}, now = new Date() }) {
-  const issuedAt = new Date(now).toISOString();
-  const expiresAt = new Date(new Date(now).getTime() + 60_000).toISOString();
+  capability, payload = {}, now = new Date(),
+  issuedAt = new Date(now).toISOString(),
+  expiresAt = new Date(new Date(now).getTime() + 60_000).toISOString() }) {
   return createEnvelope({ messageId, traceId, from, to, capability, payload,
     issuedAt, expiresAt });
 }
