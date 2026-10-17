@@ -22,3 +22,6 @@ jobs:
         run: npm test
       - name: Build reference UI
         run: npm run build
+
+      - name: Verify Pages asset paths
+        run: node scripts/verify-pages.mjs
