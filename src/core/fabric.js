@@ -3,6 +3,14 @@
  * This is a simulator, NOT a production identity, network, or authorization service.
  */
 const routeKey = (from, to, capability) => JSON.stringify([from, to, capability]);
+const receiptField = (v) => typeof v === 'string' && /^[a-z][a-z0-9-]{0,47}$/.test(v) ? v : null;
+const receiptTrace = (v) => typeof v === 'string' &&
+  /^[A-Za-z0-9._:-]{1,64}$/.test(v) ? v : null;
+const CONTRACT_DENIALS = new Set([
+  'INVALID_ENVELOPE_SHAPE', 'UNSUPPORTED_ENVELOPE_SCHEMA',
+  'INVALID_ENVELOPE_FIELDS', 'INVALID_ENVELOPE_TIME',
+  'ENVELOPE_EXPIRED', 'INVALID_ENVELOPE_PAYLOAD', 'REPLAY_DETECTED'
+]);
 
 export function createFabric({
   nodes = [],
@@ -72,9 +80,10 @@ export function createFabric({
     const receipt = Object.freeze({
       traceId,
       timestamp: String(clock()),
-      from: typeof route.from === 'string' ? route.from : null,
-      to: typeof route.to === 'string' ? route.to : null,
-      capability: typeof route.capability === 'string' ? route.capability : null,
+      from: receiptField(route.from),
+      to: receiptField(route.to),
+      capability: receiptField(route.capability),
+      requestTraceId: receiptTrace(route.requestTraceId),
       status,
       reason
       // Intentionally never record payloads, handler responses, or thrown errors.
@@ -105,6 +114,13 @@ export function createFabric({
       if (handlers.has(key)) throw new Error('Handler already registered');
       handlers.set(key, handler);
       return () => handlers.delete(key);
+    },
+    reject(route = {}, reason) {
+      if (!CONTRACT_DENIALS.has(reason)) {
+        throw new TypeError('Invalid contract rejection code');
+      }
+      const traceId = 'ii-' + String(++nextId).padStart(6, '0');
+      return record(traceId, route && typeof route === 'object' ? route : {}, 'DENIED', reason);
     },
     dispatch(route = {}) {
       const traceId = 'ii-' + String(++nextId).padStart(6, '0');
