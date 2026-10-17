@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { makeDemoContractGateway, demoEnvelope } from '../demo/contracts-fixtures.js';
+import './contracts.css';
 
 function ReceiptLine({ step }) {
   const { label, result } = step;
