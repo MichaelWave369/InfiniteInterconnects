@@ -6,7 +6,7 @@ Infinite Interconnects is a standalone experimental communication layer inspired
 
 > **Discoverable ≠ authorized. Explicit grants are required. No consequential crossing without a receipt.**
 
-## Status: v0.1 reference simulator
+## Status: v0.2 contract lab (reference simulator)
 
 This repository currently provides:
 
@@ -14,8 +14,11 @@ This repository currently provides:
 - Registered identities and target-declared capabilities
 - Exact, directional source → target → capability grants; default deny
 - Synchronous demo handlers, explicit denial/failure reasons, and bounded redacted receipts
-- Eight unit tests for allowed, denied, unknown, disabled, malformed, and failed routes
+- Automated unit tests for allowed, denied, unknown, disabled, malformed, and failed routes
 - A React + Vite interactive topology explorer with 9 fictional services and a 36-point visual motif
+- **v0.2 interconnect contracts**: strict versioned service manifests and message envelopes
+- Permission-filtered Commons directory catalog, independent grants at each hop, time/payload bounds, in-memory replay checking
+- An interactive Porch → Commons → Auralith handshake lab, including an explicitly denied direct route
 - CI that runs tests and builds the site
 
 **This does not yet send real network packets or authenticate users.** There are no production adapters, secured transports, persistent ledger records or live integrations. Do not connect this simulator to sensitive systems.
@@ -61,11 +64,15 @@ The interactive graph includes 36 peripheral dots as a visual reference to a tra
 ## File map
 
 - [src/core/fabric.js](src/core/fabric.js): headless reference engine and receipt logic
+- [src/core/contracts.js](src/core/contracts.js): manifests, envelopes, scoped directory and demo gateway
+- [src/components/ContractLab.jsx](src/components/ContractLab.jsx): two-hop handshake and denied-shortcut UI
+- [tests/contracts.test.js](tests/contracts.test.js): contract-validation and adversarial behavior tests
 - [src/demo/fixtures.js](src/demo/fixtures.js): simulated participants and grants
 - [src/App.jsx](src/App.jsx): interactive React topology and route console
 - [tests/fabric.test.js](tests/fabric.test.js): Node test suite
 - [docs/BOUNDARIES.md](docs/BOUNDARIES.md): trust boundaries, threat model starting point and explicit non-goals
 - [docs/ROADMAP.md](docs/ROADMAP.md): governed rollout and verification gates
+- [docs/CONTRACTS.md](docs/CONTRACTS.md): v0.2 wire-format proposal, trust boundaries and demo examples
 - [docs/PAGES.md](docs/PAGES.md): GitHub Pages activation, verification and troubleshooting
 - [scripts/verify-pages.mjs](scripts/verify-pages.mjs): check published JS/CSS asset paths
 

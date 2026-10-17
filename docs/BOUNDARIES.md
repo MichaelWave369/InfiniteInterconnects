@@ -29,3 +29,14 @@ Consequently, never connect this simulator directly to sensitive services or tre
 
 ## Provenance
 The 36-channel visual motif was inspired by a traditional nadi/chakra illustration. It is cultural/design inspiration, not a validated anatomical model, source code, or evidence of a superior network topology.
+
+## v0.2 interconnect contract lab
+
+- Validated manifests and envelopes do **not** prove who authored them.
+- The source ID in a request is explicitly caller-supplied and unauthenticated.
+- Public capability metadata is discoverable but not executable authority.
+- The Commons directory is reachable only through a granted discover request; restricted capabilities are filtered by exact grants.
+- Replay IDs, timestamps, and response receipts are **temporary** local demonstration controls, not distributed protections.
+- Two authorized calls are **independent**; no transitive delegation or implicit permission chaining.
+- Contract denials produce redacted receipts; the demo ledger is not durable or tamper-evident.
+- All user-visible integration endpoints remain simulated.

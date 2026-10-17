@@ -5,15 +5,24 @@
 - [x] Exact route grants, default deny
 - [x] Handler delivery, failure isolation and redacted receipts
 - [x] Browser exploration and automated core tests
-- [ ] CI verified green on GitHub
+- [x] CI verified green on GitHub
 
-## Rung 2: governance
-- Capability contract schema, scopes, identities and key rotation proposal
-- Revocation, expiry, anti-replay and approval boundaries
-- Receipt export, provenance metadata and validation
-- Threat model plus adversarial tests
+## Rung 2: interconnect contracts (PR #3)
+- [x] v1-tagged service manifests and capability visibility contracts (local assertions)
+- [x] v1-tagged request envelopes with strict structural, payload and time validation
+- [x] Independent per-hop grants and filtered Commons directory replies
+- [x] Denial receipts and bounded in-memory replay illustration
+- [x] Simulated Porch → Commons → Kingdom handshake with browser controls and tests
+- [ ] Merge after CI and review; verify updated live GitHub Page
 
-## Rung 3: integration adapters (opt-in)
+## Rung 3: production security design
+- [ ] Verified peer identity, authenticated transport and signature/issuer contracts
+- [ ] Real revocation, expiry and durable anti-replay guarantees
+- [ ] Receipt provenance, tamper-evident export and retention policy
+- [ ] Threat model, trust-boundary diagrams and adversarial transport tests
+- [ ] Protected directory metadata and version negotiation
+
+## Rung 4: integration adapters (opt-in)
 - Infinite Porch: identity and entrance boundary
 - Infinite Commons: service directory and governed capability discovery
 - PorchTalk: transport candidate, subject to its own verification gates
@@ -23,12 +32,12 @@
 
 Adapters must not presume any existing project is integrated or verified.
 
-## Rung 4: topology experiments
+## Rung 5: topology experiments
 - Compare hub-and-spoke, mesh, ring, hierarchical, and optional 36-channel reference layouts
 - Measure hop counts, partition tolerance, policy complexity, latency and failure behavior
 - Keep NBG mathematical comparisons explicitly hypothetical until falsifiable tests exist
 
-## Rung 5: deployment
+## Rung 6: production deployment
 - Peer discovery, authorization gateway and transport after security review
 - Signed release artifacts, reproducible builds, CI security gates
-- Live interactive GitHub Pages presentation, independent of backend deployment
+- [x] Live interactive GitHub Pages presentation, independent of backend deployment
