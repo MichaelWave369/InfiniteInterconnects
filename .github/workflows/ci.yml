@@ -20,8 +20,12 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Verify policy simulator
         run: npm test
+      - name: Run offline cryptographic trust demo
+        run: npm run security:demo
       - name: Build reference UI
         run: npm run build
 
       - name: Verify Pages asset paths
         run: node scripts/verify-pages.mjs
+      - name: Verify browser / Node security boundary
+        run: node scripts/verify-browser-boundary.mjs
