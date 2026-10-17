@@ -31,7 +31,7 @@ npm run dev
 npm run build
 ~~~
 
-The local Vite dev server displays the graphical route console. Use the Granted and Denied quick tests, dispatch a request, and inspect its receipt. GitHub Pages hosting can be configured after reviewing and merging the foundation PR. The Vite base is already configured for the repository path.
+The local Vite dev server displays the graphical route console. Use the Granted and Denied quick tests, dispatch a request, and inspect its receipt. The Vite base is configured for GitHub Pages. The publication workflow and required one-time repository setting are documented in [GitHub Pages launch](docs/PAGES.md). The public address after successful deployment is **https://michaelwave369.github.io/InfiniteInterconnects/**. Do not treat a passing build as proof the page has deployed.
 
 ## Conceptual architecture
 
@@ -66,6 +66,8 @@ The interactive graph includes 36 peripheral dots as a visual reference to a tra
 - [tests/fabric.test.js](tests/fabric.test.js): Node test suite
 - [docs/BOUNDARIES.md](docs/BOUNDARIES.md): trust boundaries, threat model starting point and explicit non-goals
 - [docs/ROADMAP.md](docs/ROADMAP.md): governed rollout and verification gates
+- [docs/PAGES.md](docs/PAGES.md): GitHub Pages activation, verification and troubleshooting
+- [scripts/verify-pages.mjs](scripts/verify-pages.mjs): check published JS/CSS asset paths
 
 ## Principles
 
