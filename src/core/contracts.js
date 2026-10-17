@@ -69,7 +69,9 @@ export function validateEnvelope(e, { now = new Date().toISOString() } = {}) {
     return failure('INVALID_ENVELOPE_TIME');
   }
   if (current >= end || start < current - MAX_AGE_MS) return failure('ENVELOPE_EXPIRED');
-  if (!isRecord(e.payload)) return failure('INVALID_ENVELOPE_PAYLOAD');
+  if (!isRecord(e.payload) || !isJsonObjectTree(e.payload)) {
+    return failure('INVALID_ENVELOPE_PAYLOAD');
+  }
   let encoded;
   try {
     encoded = JSON.stringify(e.payload);
@@ -77,8 +79,9 @@ export function validateEnvelope(e, { now = new Date().toISOString() } = {}) {
     return failure('INVALID_ENVELOPE_PAYLOAD');
   }
   if (typeof encoded !== 'string' ||
-      new TextEncoder().encode(encoded).length > MAX_PAYLOAD_BYTES ||
-      !isJsonObjectTree(e.payload)) return failure('INVALID_ENVELOPE_PAYLOAD');
+      new TextEncoder().encode(encoded).length > MAX_PAYLOAD_BYTES) {
+    return failure('INVALID_ENVELOPE_PAYLOAD');
+  }
   return success();
 }
 
