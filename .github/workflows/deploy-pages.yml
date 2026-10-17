@@ -28,10 +28,14 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Test governed fabric
         run: npm test
+      - name: Run offline cryptographic trust demo
+        run: npm run security:demo
       - name: Build React site
         run: npm run build
       - name: Verify Pages assets
         run: node scripts/verify-pages.mjs
+      - name: Verify browser / Node security boundary
+        run: node scripts/verify-browser-boundary.mjs
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
