@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { createFabric } from './core/fabric.js';
 import { DEMO_NODES, DEMO_GRANTS, DEMO_LINKS } from './demo/fixtures.js';
+import { ContractLab } from './components/ContractLab.jsx';
 
 const byId = Object.fromEntries(DEMO_NODES.map((node) => [node.id, node]));
 const statusLabel = {
@@ -92,7 +93,7 @@ export function App() {
     <div className="site-grid" aria-hidden="true"/>
     <header className="top-bar">
       <a className="brand" href="#top"><span className="brand-glyph">∞</span><span>INFINITE<span className="brand-light">INTERCONNECTS</span></span></a>
-      <div className="top-right"><span className="version">PROTOCOl / V0.1</span><a href="https://github.com/MichaelWave369/InfiniteInterconnects" target="_blank" rel="noreferrer" className="github-link">GITHUB ↗</a></div>
+      <div className="top-right"><span className="version">PROTOCOL / V0.2</span><a href="https://github.com/MichaelWave369/InfiniteInterconnects" target="_blank" rel="noreferrer" className="github-link">GITHUB ↗</a></div>
     </header>
 
     <main id="top">
@@ -155,8 +156,9 @@ export function App() {
           {fabric.grants().map((grant) => <tr key={grant.from + grant.to + grant.capability}><td>{grant.from}</td><td>{grant.to}</td><td>{grant.capability}</td></tr>)}
         </tbody></table></div><p className="ledger-footnote">Grants are configured by the simulator. There is no self-service grant escalation.</p></div>}
       </section>
+      <ContractLab />
       <section className="principles"><div><span>01</span><h3>DISCOVER</h3><p>Services can declare their capabilities without automatically authorizing their use.</p></div><div><span>02</span><h3>AUTHORIZE</h3><p>Each crossing requires an exact directional source, destination and capability grant.</p></div><div><span>03</span><h3>RECEIPT</h3><p>Every attempt leaves a minimal decision record without exposing message content.</p></div></section>
-      <footer><span>INFINITE INTERCONNECTS · REFERENCE FABRIC 0.1</span><span>BUILD OUTWARD · CIRCLE BACK · LEDGER ABOVE EGO</span></footer>
+      <footer><span>INFINITE INTERCONNECTS · REFERENCE FABRIC 0.2</span><span>BUILD OUTWARD · CIRCLE BACK · LEDGER ABOVE EGO</span></footer>
     </main>
   </div>;
 }
