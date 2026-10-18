@@ -40,3 +40,13 @@ The 36-channel visual motif was inspired by a traditional nadi/chakra illustrati
 - Two authorized calls are **independent**; no transitive delegation or implicit permission chaining.
 - Contract denials produce redacted receipts; the demo ledger is not durable or tamper-evident.
 - All user-visible integration endpoints remain simulated.
+
+## v0.3: Node-only cryptographic laboratory
+
+- A pre-pinned Ed25519 key verifies local peer key possession through a single-use challenge.
+- A separate pinned issuer key signs exact grant subject, audience, capability, scope and time constraints.
+- Even a validly signed token cannot execute a route denied by the base v0.2 gateway.
+- Local sessions, challenge caches and revocations are volatile. Restarts discard them.
+- Signed authorization alone does not authenticate a network connection or supply identity federation.
+- The browser Pages site is presentation/simulation only and never receives signing keys.
+- Refer to [docs/SECURITY.md](SECURITY.md) for the full threat model and missing gates.

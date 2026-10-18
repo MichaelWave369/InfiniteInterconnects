@@ -6,7 +6,7 @@ Infinite Interconnects is a standalone experimental communication layer inspired
 
 > **Discoverable ≠ authorized. Explicit grants are required. No consequential crossing without a receipt.**
 
-## Status: v0.2 contract lab (reference simulator)
+## Status: v0.3 security-boundary lab (reference simulator)
 
 This repository currently provides:
 
@@ -19,6 +19,8 @@ This repository currently provides:
 - **v0.2 interconnect contracts**: strict versioned service manifests and message envelopes
 - Permission-filtered Commons directory catalog, independent grants at each hop, time/payload bounds, in-memory replay checking
 - An interactive Porch → Commons → Auralith handshake lab, including an explicitly denied direct route
+- **v0.3 Node-only Ed25519 proof lab**: challenge-response peer key possession, signed scoped capability grants, expiry, local revocation and non-transitive route enforcement
+- A read-only security-boundary explainer in the public React explorer
 - CI that runs tests and builds the site
 
 **This does not yet send real network packets or authenticate users.** There are no production adapters, secured transports, persistent ledger records or live integrations. Do not connect this simulator to sensitive systems.
@@ -30,6 +32,7 @@ Requires Node.js 22+ and npm.
 ~~~sh
 npm install
 npm test
+npm run security:demo
 npm run dev
 npm run build
 ~~~
@@ -65,6 +68,9 @@ The interactive graph includes 36 peripheral dots as a visual reference to a tra
 
 - [src/core/fabric.js](src/core/fabric.js): headless reference engine and receipt logic
 - [src/core/contracts.js](src/core/contracts.js): manifests, envelopes, scoped directory and demo gateway
+- [src/security/authority.node.js](src/security/authority.node.js): Node-only signature and identity research harness
+- [tests/security.test.js](tests/security.test.js): adversarial cryptographic authorization tests
+- [scripts/security-demo.mjs](scripts/security-demo.mjs): ephemeral key and grant proof (no private key output)
 - [src/components/ContractLab.jsx](src/components/ContractLab.jsx): two-hop handshake and denied-shortcut UI
 - [tests/contracts.test.js](tests/contracts.test.js): contract-validation and adversarial behavior tests
 - [src/demo/fixtures.js](src/demo/fixtures.js): simulated participants and grants
@@ -73,6 +79,7 @@ The interactive graph includes 36 peripheral dots as a visual reference to a tra
 - [docs/BOUNDARIES.md](docs/BOUNDARIES.md): trust boundaries, threat model starting point and explicit non-goals
 - [docs/ROADMAP.md](docs/ROADMAP.md): governed rollout and verification gates
 - [docs/CONTRACTS.md](docs/CONTRACTS.md): v0.2 wire-format proposal, trust boundaries and demo examples
+- [docs/SECURITY.md](docs/SECURITY.md): v0.3 Ed25519 lab, threat boundaries and production work
 - [docs/PAGES.md](docs/PAGES.md): GitHub Pages activation, verification and troubleshooting
 - [scripts/verify-pages.mjs](scripts/verify-pages.mjs): check published JS/CSS asset paths
 
